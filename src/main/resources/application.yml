@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
+    dirver-class-name: org.h2.Driver
+
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    default-fetch-size: 100
+#    default-statement-timeout: 30
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
