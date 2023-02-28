@@ -1,6 +1,6 @@
-package com.vrenti.technet;
+package com.vrenti.technet.controller;
 
-import com.vrenti.technet.domain.mapper.TestMapper;
+import com.vrenti.technet.repository.mapper.TestMapper;
 import com.vrenti.technet.domain.vo.TestVO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

@@ -10,6 +10,29 @@ GET localhost:8080/test
 ###
 GET localhost:8080/test/1
 
+###
+POST localhost:8080/board
+Content-Type: application/json
+
+{
+  "memberId" : 1
+}
+###
+GET localhost:8080/board/2
+
+###
+GET localhost:8080/board/1/?keyword=12
+
+###
+
+PUT localhost:8080/board/5
+Content-Type: application/json
+
+{
+  "boardType" : 2,
+  "subject":"변경 TEST",
+  "content":"<p>변경 TEST</p>"
+}
 
 
 

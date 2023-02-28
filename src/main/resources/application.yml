@@ -1,14 +1,40 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test
-    username: sa
-    password:
-    dirver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://localhost/~/test
+#    url: jdbc:log4jdbc:mysql://localhost:3306/technet?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/TECHNET?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
-#  configuration:
-#    map-underscore-to-camel-case: true
-#    default-fetch-size: 100
-#    default-statement-timeout: 30
+
 #  thymeleaf:
 #    prefix: classpath:/templates/
 #    suffix: .html
+
+
+#mybatis설정
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+
+
+
+#logging:
+#  level:
+#    jdbc.sqlonly: debug
+#    org.springframework.web: debug
+#    jdbc.audit : error
+#    jdbc.connection : error
+#    jdbc.resultset : debug
+#    jdbc.sqltiming : error
+
+#    com:
+#      vrenti:
+#        technet:
+#          repository:
+#            mapper: debug
+

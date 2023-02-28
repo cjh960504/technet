@@ -1,4 +1,4 @@
-package com.vrenti.technet.domain.mapper;
+package com.vrenti.technet.repository.mapper;
 
 import com.vrenti.technet.domain.vo.TestVO;
 import org.apache.ibatis.annotations.Insert;
