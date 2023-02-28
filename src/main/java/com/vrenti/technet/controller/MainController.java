@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class MainController {
     private final TestMapper testMapper;
+
+    @GetMapping("/")
+    public String index(){
+        return "index";
+    }
+
     @ResponseBody
     @PostMapping("/test")
     public int insert(@RequestBody TestVO testVO){
