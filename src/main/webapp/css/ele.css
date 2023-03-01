@@ -1,0 +1,259 @@
+input[type = "checkbox"] {
+    appearance: none;
+    display: none;
+    visibility: hidden;
+}
+
+.bar {
+    position: relative;
+    cursor: pointer;
+    width: 21px;
+    height: 17px;
+    display: none;
+}
+
+.bar span {
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background: #333333;
+    border-radius: 100px;
+    display: inline-block;
+    transition: 0.3s ease;
+    left: 0;
+}
+
+.bar span.top {
+    top: 0;
+}
+
+.bar span.middle {
+    top: 7px;
+}
+
+.bar span.bottom {
+    bottom: 0;
+}
+
+input[type]:checked ~ span.top {
+    transform: rotate(45deg);
+    transform-origin: top left;
+    width: 22px;
+    left: 2px;
+}
+
+input[type]:checked ~ span.bottom {
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    width: 22px;
+    bottom: -2px;
+}
+
+input[type]:checked ~ span.middle {
+    transform: translateX(-20px);
+    opacity: 0;
+}
+
+
+
+
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+button.learn-more {
+    width: 12rem;
+    height: auto;
+}
+
+button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #ffffff;
+    border-radius: 1.625rem;
+    opacity: 0.2;
+}
+
+button.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #ffffff;
+}
+
+button.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #282936;
+    border-right: 0.125rem solid #282936;
+    transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    opacity: 0.4;
+    text-transform: uppercase;
+}
+
+button:hover .circle {
+    width: 100%;
+    opacity: 1;
+}
+
+button:hover .circle .icon.arrow {
+    background: #282936;
+    transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+    color: #282936;
+    opacity: 1;
+}
+
+
+.scrolldown {
+    --color: white;
+    --sizeX: 20px;
+    --sizeY: 40px;
+    position: absolute;
+    width: var(--sizeX);
+    height: var(--sizeY);
+    margin-left: var(sizeX / 2);
+    border: calc(var(--sizeX) / 10) solid var(--color);
+    border-radius: 50px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    cursor: pointer;
+    margin-top: -80px;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.scrolldown::before {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    background-color: var(--color);
+    border-radius: 100%;
+    animation: scrolldown-anim 2s infinite;
+    box-sizing: border-box;
+    box-shadow: 0px -5px 3px 1px #2a547066;
+}
+
+@keyframes scrolldown-anim {
+    0% {
+        opacity: 0;
+        height: 6px;
+    }
+
+    40% {
+        opacity: 1;
+        height: 10px;
+    }
+
+    80% {
+        transform: translate(0, 20px);
+        height: 10px;
+        opacity: 0;
+    }
+
+    100% {
+        height: 3px;
+        opacity: 0;
+    }
+}
+
+.chevrons {
+    padding: 6px 0 0 0;
+    margin-left: -7px;
+    margin-top: 48px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chevrondown {
+    margin-top: -6px;
+    position: relative;
+    border: solid var(--color);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
+
+.chevrondown:nth-child(odd) {
+    animation: pulse54012 500ms ease infinite alternate;
+}
+
+.chevrondown:nth-child(even) {
+    animation: pulse54012 500ms ease infinite alternate 250ms;
+}
+
+@keyframes pulse54012 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}
+
+
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px) */ 
+@media all and (min-width:768px) and (max-width:1023px) {
+    .scrolldown {
+        margin-bottom: 600px;
+      }
+} 
+
+
+

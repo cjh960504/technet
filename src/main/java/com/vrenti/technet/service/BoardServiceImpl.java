@@ -32,12 +32,17 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> findBoardList(int boardType, String keyword) {
-        return boardMapper.findBoardsByKeywordInBoardType(boardType, keyword);
+    public List<Board> findBoardList(int boardType, String keyword, int pageNum, int pageSize, String searchType) {
+        return boardMapper.findBoardsByKeywordInBoardType(boardType, keyword, ((pageNum-1) * pageSize), pageSize, searchType);
     }
 
     @Override
     public int updateBoard(Board board) {
         return boardMapper.updateBoard(board);
+    }
+
+    @Override
+    public int deleteBoard(int boardId) {
+        return boardMapper.deleteBoard(boardId);
     }
 }

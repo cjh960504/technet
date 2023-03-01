@@ -7,7 +7,7 @@ public class BoardSQL {
 
     public static final String FIND_BOARD = "SELECT * FROM BOARD WHERE BOARD_ID = #{boardId}";
 
-    public static final String FIND_BOARDS = "SELECT * FROM BOARD WHERE BOARD_TYPE = #{boardType} ";
+    public static final String FIND_BOARDS = "SELECT * FROM BOARD B JOIN MEMBER M ON B.MEMBER_ID = M.MEMBER_ID WHERE B.BOARD_TYPE = #{boardType} ";
     public static final String INSERT_BOARD = "INSERT INTO BOARD(member_id, board_type, subject, content, write_date, write_ip, edit_date, edit_ip, hit) "
             + "VALUES (1, #{board.boardType}, #{board.subject}, #{board.content}, now(), '', now(), '', 1)";
 
@@ -15,7 +15,9 @@ public class BoardSQL {
             "BOARD_PASSWORD = #{board.boardPassword}, SUBJECT = #{board.subject}, CONTENT = #{board.content}, EDIT_DATE = now(), EDIT_IP = ''," +
             "BOARD_THUMB = #{board.boardThumb} WHERE BOARD_ID = #{board.boardId}";
 
-    public String findBoardsByKeywordInBoardType(String keyword){
+    public static final String DELETE_BOARD = "DELETE FROM BOARD WHERE BOARD_ID = #{boardId}";
+
+    public String findBoardsByKeywordInBoardType(String keyword, int pageNum, int pageSize, String searchType){
         //BoardType 은 컨트롤러에서 필수로 체크해야하는 부분
         //BoardType 이 varchar(10) 으로 되어있어서 검색이 안되는 상황 발생했었음
 
@@ -24,8 +26,15 @@ public class BoardSQL {
         query.append(FIND_BOARDS);
 
         if(StringUtils.hasText(keyword)){
-            query.append("AND (SUBJECT LIKE concat('%', #{keyword}, '%') OR CONTENT LIKE concat('%', #{keyword}, '%'))");
+            if("name".equals(searchType)){
+                query.append("AND M.NAME LIKE concat('%', #{keyword}, '%') ");
+            }else{
+                query.append("AND (SUBJECT LIKE concat('%', #{keyword}, '%') OR CONTENT LIKE concat('%', #{keyword}, '%')) ");
+            }
         }
+
+        query.append("LIMIT #{pageSize} OFFSET #{pageNum} ");
+
 
         return query.toString();
     }

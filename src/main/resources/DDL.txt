@@ -1,0 +1,110 @@
+DROP TABLE IF EXISTS member;
+
+DROP TABLE IF EXISTS board;
+
+DROP TABLE IF EXISTS file;
+
+DROP TABLE IF EXISTS reply;
+
+
+CREATE TABLE member (
+	member_id	int(11)	NOT NULL AUTO_INCREMENT,
+	id	varchar(20)	NOT NULL,
+	password	varchar(255)	NOT NULL,
+	name	varchar(255)	NOT NULL,
+	role	varchar(11)	NOT NULL,
+	create_date	datetime	NOT NULL,
+	create_ip	varchar(255)	NOT NULL,
+	update_date	datetime	NOT NULL,
+	update_ip	varchar(255)	NOT NULL,
+	status	varchar(11)	NOT null,
+	primary key(member_id)
+);
+
+CREATE TABLE board (
+	board_id	int(11)	NOT NULL AUTO_INCREMENT,
+	member_id	int(11)	NOT NULL,
+	board_type	int(3)	NOT NULL,
+	board_secret	varchar(10)	NULL,
+	board_password	int(4)	NULL,
+	subject	varchar(255)	NOT NULL,
+	content	longtext	NOT NULL,
+	write_date	datetime	NOT NULL,
+	write_ip	varchar(255)	NOT NULL,
+	edit_date	datetime	NOT NULL,
+	edit_ip	varchar(255)	NOT NULL,
+	hit	int(11)	NOT NULL,
+	board_thumb	varchar(255)	null,
+	primary key (board_id)
+);
+
+
+
+CREATE TABLE file (
+	file_id	int(11)	NOT NULL AUTO_INCREMENT,
+	board_id	int(11)	,
+	member_id   int(11) NOT NULL,
+	org_name	varchar(255)	NOT NULL,
+	reg_name	varchar(255)	NOT NULL,
+	type	varchar(20)	NOT NULL,
+	size	int(11)	NOT NULL,
+	upload_date	datetime	NOT NULL,
+	upload_ip	varchar(255)	NOT NULL,
+	use_at	int(11)	NOT null,
+	primary key(file_id)
+);
+
+
+
+CREATE TABLE reply (
+	reply_id	int(11)	NOT NULL AUTO_INCREMENT,
+	board_id	int(11)	NOT NULL,
+	member_id	int(11)	NOT NULL,
+	parent_id	int(11)	NULL,
+	content	longtext	NOT NULL,
+	write_date	datetime	NOT NULL,
+	write_ip	varchar(255)	NOT NULL,
+	edit_date	datetime	NOT NULL,
+	edit_ip	varchar(255)	NOT null,
+	primary key(reply_id)
+);
+
+
+ALTER TABLE board ADD CONSTRAINT FK_member_TO_board_1 FOREIGN KEY (
+	member_id
+)
+REFERENCES member (
+	member_id
+);
+
+
+/*
+ALTER TABLE file ADD CONSTRAINT FK_board_TO_file_1 FOREIGN KEY (
+	board_id
+)
+REFERENCES board (
+	board_id
+);
+*/
+
+ALTER TABLE file ADD CONSTRAINT FK_member_TO_file_1 FOREIGN KEY (
+	member_id
+)
+REFERENCES board (
+	member_id
+);
+
+ALTER TABLE reply ADD CONSTRAINT FK_board_TO_reply_1 FOREIGN KEY (
+	board_id
+)
+REFERENCES board (
+	board_id
+);
+
+ALTER TABLE reply ADD CONSTRAINT FK_member_TO_reply_1 FOREIGN KEY (
+	member_id
+)
+REFERENCES member (
+	member_id
+);
+

@@ -10,7 +10,9 @@ public interface BoardService {
 
     public Board findByBoardId(int boardId);
 
-    public List<Board> findBoardList(int boardType, String keyword);
+    public List<Board> findBoardList(int boardType, String keyword, int pageNum, int pageSize, String searchType);
 
     public int updateBoard(Board board);
+
+    public int deleteBoard(int boardId);
 }

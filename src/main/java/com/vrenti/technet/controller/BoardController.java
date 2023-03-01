@@ -27,8 +27,11 @@ public class BoardController {
 
     @GetMapping("/board/{boardType}/")
     public List<Board> findBoardList(@PathVariable("boardType") int boardType,
-                                     @RequestParam(name="keyword", required = false) String keyword){
-        return boardService.findBoardList(boardType, keyword);
+                                     @RequestParam(name="keyword", required = false) String keyword,
+                                     @RequestParam(name="pageNum", required = false, defaultValue = "1") int pageNum,
+                                     @RequestParam(name="pageSize", required = false, defaultValue = "10") int pageSize,
+                                     @RequestParam(name="searchType", required = false, defaultValue = "titleAndContent") String searchType){
+        return boardService.findBoardList(boardType, keyword, pageNum, pageSize, searchType);
     }
 
     @PutMapping("/board/{boardId}")
@@ -37,9 +40,9 @@ public class BoardController {
         return boardService.updateBoard(board);
     }
 
-    @DeleteMapping("/board/{boardId}")
-    public String deleteBoard(@PathVariable("boardId") int boardId){
-        return "";
+    @DeleteMapping("/board/{boardId}") //회원상태를 '탈퇴'로 Update 하는 것으로 수정 필요
+    public int deleteBoard(@PathVariable("boardId") int boardId){
+        return boardService.deleteBoard(boardId);
     }
 
 }
