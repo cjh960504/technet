@@ -26,5 +26,7 @@ public class File {
 
     private int useAt;
 
+    private char imageAt;
+
 
 }

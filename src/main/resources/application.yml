@@ -11,7 +11,11 @@ spring:
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
-
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
 
 
 #mybatis설정
@@ -26,7 +30,7 @@ mybatis:
 logging:
   level:
     jdbc.sqlonly: debug
-    org.springframework.web: debug
+    org.springframework.web: error
     jdbc.audit : error
     jdbc.connection : error
     jdbc.resultset : debug

@@ -7,6 +7,7 @@ import com.vrenti.technet.service.FileService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.HttpRequestHandler;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
@@ -44,6 +46,9 @@ public class FileController {
         // 파일이 저장될 Path 설정
 
         //String filePath = "C:\\board\\file";
+        LocalDate date = LocalDate.now();
+        String addPath = date.getYear() + "/" + date.getMonthValue() + "/" + date.getDayOfMonth() + "/";
+        filePath += addPath;
 
 
         java.io.File file = new java.io.File(filePath);
@@ -69,6 +74,7 @@ public class FileController {
             fileDto.setSize((int) image.getSize());
             fileDto.setUploadIp("");
             fileDto.setUseAt(1);
+            fileDto.setImageAt('1');
 
 
             if(fileService.insertImage(fileDto) == 0){

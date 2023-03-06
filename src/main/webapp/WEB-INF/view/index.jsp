@@ -74,7 +74,7 @@
                             contentType: false,
                             data:formData,
                             success:function (data){
-                                var image = $("<img>").attr("src", "/uploads/" + data.data.regFileName).css("max-width", "900px");
+                                var image = $("<img>").attr("src", "/uploads/" + data.data.regFileName).css("max-width", "100%");
                                 $note.summernote('insertNode', image[0] );
                             },
                             error:function (err){
